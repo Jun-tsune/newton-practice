@@ -8,6 +8,7 @@ def derivative(x, est_precision, sign):
     Keyword arguments:
     x -- point of derivative (int, float)
     est_precision -- search area (int, float)
+    sin -- derivative orientation (1 or -1)
 
     Return:
     dev -- an derivative number (int, float)
@@ -25,6 +26,7 @@ def sec_derivative(x, est_precision, sign):
     Keyword arguments:
     x -- point of derivative (int, float)
     est_precision -- search area (int, float)
+    sin -- derivative orientation (1 or -1)
 
     Return:
     dev -- an derivative number (int, float)
@@ -53,5 +55,3 @@ def optimize(x, itter=10000):
         sec_dev = sec_derivative(x, est_precision, sign)
         x = x - dev/sec_dev
     return x
-
-optimize(5, 100000)
