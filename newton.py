@@ -1,3 +1,7 @@
+def est_func(x):# assuming func y=x^2+2x+1
+    y = x**2+2*x+1
+    return y
+
 def derivative(x, est_precision, sign):
     """Caluculating first derivative.
 
@@ -34,20 +38,25 @@ def sec_derivative(x, est_precision, sign):
     return dev
 
 
-def optimize(x, itter=10000):
+def optimize(x, threshold = 10**(-6), max_iter=10000):
     """Caluculating optimized points.
 
     Keyword arguments:
     x -- starting point of optimization (int, float)
-    itter -- how many times to try optimazation (int, default 10000)
+    threshold -- threshold of OK (int, float)
+    max_iter -- how many times to try optimazation (int, default 10000)
 
     Return:
     x -- an optimized number (int, float)
     """
-    for i in range(itter):
+    for i in range(max_iter):
         est_precision = 1/((i+1)*100)
         sign = (-1)**i
         dev = derivative(x, est_precision, sign)
         sec_dev = sec_derivative(x, est_precision, sign)
         x = x - dev/sec_dev
+        if abs(dev/sec_dev) < threshold:
+            break
+    if i == max_iter-1:
+        print("max_itter may be small")    
     return x
