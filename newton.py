@@ -1,7 +1,3 @@
-def est_func(x):# assuming func y=x^2+2x+1
-    y = x**2+2*x+1
-    return y
-    
 def derivative(x, est_precision, sign):
     """Caluculating first derivative.
 
