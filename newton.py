@@ -10,10 +10,13 @@ def derivative(est_func, x, est_precision, sign):
     Return:
     dev -- an derivative number (int, float)
     """
-    x_2 = x + est_precision * sign
-    y = est_func(x)
-    y_2 = est_func(x_2)
-    dev = (y_2 - y)/est_precision * sign
+    dev = x
+    for i in range(len(x)):
+        x_2 = x
+        x_2[i] = x[i] + est_precision * sign
+        y = est_func(x)
+        y_2 = est_func(x_2)
+        dev[i] = (y_2 - y)/(est_precision * sign)
     return dev 
 
 
@@ -29,10 +32,12 @@ def sec_derivative(est_func, x, est_precision, sign):
     Return:
     dev -- an derivative number (int, float)
     """
-    x_2 = x + est_precision * sign
-    y = derivative(est_func, x, est_precision, sign)
-    y_2 = derivative(est_func, x_2, est_precision, sign)
-    dev = (y_2 - y)/est_precision * sign
+    dev = x
+    for i in range(len(x)):    
+        x_2[I] = x[i] + est_precision * sign
+        y = derivative(est_func, x, est_precision, sign)
+        y_2 = derivative(est_func, x_2, est_precision, sign)
+        dev[i] = (y_2 - y)/est_precision * sign
     return dev
 
 
