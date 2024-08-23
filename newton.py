@@ -5,7 +5,7 @@ def derivative(est_func, x, est_precision, sign):
     est_func -- function of research (def)
     x -- point of derivative (int, float)
     est_precision -- search area (int, float)
-    sin -- derivative orientation (1 or -1)
+    sign -- derivative orientation (1 or -1)
 
     Return:
     dev -- an derivative number (int, float)
@@ -24,7 +24,7 @@ def sec_derivative(est_func, x, est_precision, sign):
     est_func -- function of research (def)
     x -- point of derivative (int, float)
     est_precision -- search area (int, float)
-    sin -- derivative orientation (1 or -1)
+    sign -- derivative orientation (1 or -1)
 
     Return:
     dev -- an derivative number (int, float)
@@ -49,7 +49,7 @@ def optimize(est_func, x, threshold = 10**(-6), max_iter=10000):
     x -- an optimized number (int, float)
     """
     for i in range(max_iter):
-        est_precision = 1/((i+1)*100)
+        est_precision = 1e-6
         sign = (-1)**i
         dev = derivative(est_func, x, est_precision, sign)
         sec_dev = sec_derivative(est_func, x, est_precision, sign)
