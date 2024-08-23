@@ -32,9 +32,10 @@ def sec_derivative(est_func, x, est_precision, sign):
     Return:
     dev -- an derivative number (int, float)
     """
-    dev = x
-    for i in range(len(x)):    
-        x_2[I] = x[i] + est_precision * sign
+    dev = np.asarray([x,x,x])
+    for i in range(len(x)):
+        x_2 = x
+        x_2[i] = x[i] + est_precision * sign
         y = derivative(est_func, x, est_precision, sign)
         y_2 = derivative(est_func, x_2, est_precision, sign)
         dev[i] = (y_2 - y)/est_precision * sign
@@ -58,8 +59,8 @@ def optimize(est_func, x, threshold = 10**(-6), max_iter=10000):
         sign = (-1)**i
         dev = derivative(est_func, x, est_precision, sign)
         sec_dev = sec_derivative(est_func, x, est_precision, sign)
-        x = x - dev/sec_dev
-        if abs(dev/sec_dev) < threshold:
+        x = x - np.linalg.inv(a)*sec_dev
+        if np.linalg.norm(np.linalg.inv(a)*sec_dev, ord=2) < threshold:
             break
     if i == max_iter-1:
         print("max_itter may be small")    
